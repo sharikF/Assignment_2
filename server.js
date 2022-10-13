@@ -19,6 +19,8 @@ var blogService = require ('./data-service.js')
 var app = express(); 
 
 
+
+
 app.use(express.static("public"));//Static Route
 
 
@@ -36,7 +38,7 @@ app.get("/about", (req,res) => {//About
 
 //blog new< //Manager
 app.get("/managers", (req,res) =>{
-    blogService.getAllemployees().then((data) => {
+    blogService.getAllEmployees().then((data) => {
         res.json(data);
     }).catch((err) => {
         res.json({message: err});
@@ -45,7 +47,7 @@ app.get("/managers", (req,res) =>{
 
 //categories //Employee
 app.get("/employee", (req,res) => {
-    blogService.getAllemployee().then((data) => {
+    blogService.getAllEmployees().then((data) => {
         res.json(data);
      }).catch((err) => {
         res.json({message: err});
