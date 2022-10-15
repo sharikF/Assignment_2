@@ -15,7 +15,7 @@ var HTTP_PORT = process.env.PORT || 8080;
 var path = require("path");
 const res = require("express/lib/response")
 var express = require("express"); 
-var blogService = require ('./data-service.js')
+var dataService = require ('./data-service.js')
 var app = express(); 
 
 
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {//Redirect Route
     res.redirect('/about');
 });
 
-var blogService = require('./blog-service.js') //Manager Service//Blog Service
+var dataService = require('./data-service.js') //Manager Service//Blog Service
 const { rmSync } = require("fs")
 
 
@@ -38,7 +38,7 @@ app.get("/about", (req,res) => {//About
 
 //blog new< //Manager
 app.get("/managers", (req,res) =>{
-    blogService.getAllEmployees().then((data) => {
+    dataService.getAllEmployees().then((data) => {
         res.json(data);
     }).catch((err) => {
         res.json({message: err});
@@ -47,7 +47,7 @@ app.get("/managers", (req,res) =>{
 
 //categories //Employee
 app.get("/employee", (req,res) => {
-    blogService.getAllEmployees().then((data) => {
+    dataService.getAllEmployees().then((data) => {
         res.json(data);
      }).catch((err) => {
         res.json({message: err});
@@ -58,7 +58,7 @@ app.use((req,res) => {//Error
     res.status(404).send("Page Not Found");
 });
 
-blogService.initialize().then(() =>{
+dataService.initialize().then(() =>{
     app.listen(HTTP_PORT, () => {
         console.log('Express HTTP server is listening to the port', HTTP_PORT)
     })
@@ -68,7 +68,7 @@ blogService.initialize().then(() =>{
 
 
 app.get("/departments", (req,res) =>{//departments
-    blogService.getAlldepartments().then((data) => {
+    dataService.getAlldepartments().then((data) => {
         res.json(data);
     }).catch((err) => {
         res.json({message: err});
