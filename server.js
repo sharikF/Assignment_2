@@ -28,7 +28,7 @@ app.get("/", (req, res) => {//Redirect Route
     res.redirect('/about');
 });
 
-var dataService = require('./data-service.js') //Manager Service//Blog Service
+var dataService = require('./data-service.js') //Manager Service
 const { rmSync } = require("fs")
 
 
@@ -36,8 +36,7 @@ app.get("/about", (req,res) => {//About
     res.sendFile(path.join(__dirname, "/views/about.html"));
 });
 
-//blog new< //Manager
-app.get("/managers", (req,res) =>{
+app.get("/managers", (req,res) =>{ //Manager
     dataService.getAllEmployees().then((data) => {
         res.json(data);
     }).catch((err) => {
@@ -45,8 +44,7 @@ app.get("/managers", (req,res) =>{
     })
 });
 
-//categories //Employee
-app.get("/employee", (req,res) => {
+app.get("/employee", (req,res) => { //Employee
     dataService.getAllEmployees().then((data) => {
         res.json(data);
      }).catch((err) => {
